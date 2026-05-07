@@ -1,3 +1,5 @@
+import os
+
 from fastapi import FastAPI, Request, Form, HTTPException
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import JSONResponse, RedirectResponse
@@ -24,10 +26,10 @@ candidate_labels = [
 def create_connection():
     try:
         connection = mysql.connector.connect(
-            host='localhost',
-            database='webgpt',
-            user='root',
-            password='password'
+            host=os.getenv('DB_HOST', 'localhost'),
+            database=os.getenv('DB_NAME', 'webgpt'),
+            user=os.getenv('DB_USER', 'root'),
+            password=os.getenv('DB_PASSWORD', '')
         )
 
         return connection
