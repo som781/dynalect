@@ -100,4 +100,4 @@ This was a prototype, not a product. Things it doesn't do:
 
 ## Demo
 
-Walkthrough video: *(add YouTube link here)*
+Walkthrough video: https://www.youtube.com/watch?v=ab88SojP580
