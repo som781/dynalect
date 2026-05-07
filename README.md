@@ -68,7 +68,7 @@ templates/          Jinja2 templates (home, products, product_detail, cart, acco
 static/images/      Product images
 schema.rar          MySQL schema (products, cart tables)
 requirements.txt    Pinned Python dependencies
-test.ipynb          Scratch notebook for trying out the classification pipeline
+test_intent.py      Scratch script for trying out the classification pipeline
 ```
 
 ## Running locally
