@@ -87,7 +87,16 @@ python app.py
 # → http://127.0.0.1:8000
 ```
 
-The first request triggers Hugging Face to download the BART-MNLI weights (~1.6 GB), so cold start is slow.
+The first request triggers Hugging Face to download the BART-MNLI weights (~1.6 GB), so cold start is slow. After warmup, classification takes ~300 ms on CPU; faster with CUDA.
+
+## What I'd do differently now
+
+Things that were good-enough for a prototype but not what I'd ship today:
+
+- **No accuracy measurement.** Intent quality was eyeballed during development, not measured on a labeled holdout. A real version starts with ~50 hand-labeled instructions per intent and tracks top-1 accuracy as the candidate label set evolves.
+- **Fuzzy-match threshold of 70 is arbitrary.** Picked because it worked on full product names ("Apple iPhone 13") and rejected unrelated text. It also rejects partial names ("iphone"), which we caught in testing. A real version tunes this on a labeled instruction set, or replaces it with an embedding-based product lookup.
+- **Label-design overlap.** "products" and "product's price low to high" share most of their semantic space; zero-shot NLI confuses them. Better label design (or two-stage classification: action category → modifier) would help.
+- **Cold start is ~1.6 GB.** First request triggers the BART-MNLI download. For a real deployment the model would be baked into the container image or pre-loaded.
 
 ## Known limitations
 
