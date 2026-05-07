@@ -5,6 +5,7 @@ __pycache__/
 .venv/
 venv/
 .idea/
+.DS_Store
 .ipynb_checkpoints/
 .claude/
 schema/
